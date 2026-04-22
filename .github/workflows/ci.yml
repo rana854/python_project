@@ -24,14 +24,4 @@ jobs:
     - name: Push Docker image
       run: docker push ${{ secrets.DOCKER_USERNAME }}/my-app1:latest
 
-    - name: Setup kubeconfig
-      run: |
-         echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > kubeconfig
-         mkdir -p ~/.kube
-         mv kubeconfig ~/.kube/config
-        
-    - name: Deploy to Kubernetes
-      run: |
-        kubectl apply -f deployment.yaml
-        kubectl apply -f service.yaml
-        kubectl rollout restart deployment myapp100     
+   
